@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Oi, sumido — Feliz Dia dos Namorados da Catalyst</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --tomato:    #D40000;
+      --ebano:     #13131D;
+      --lilac:     #95BDD4;
+      --grey-blue: #D3E1ED;
+      --paper:     #F4F4F4;
+      --rose:      #FFF0F3;
+      --display:   'Space Grotesk', sans-serif;
+      --body:      'Open Sans', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--body);
+      background: #fff;
+      color: var(--ebano);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      background: var(--ebano);
+      padding: 14px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 24px rgba(0,0,0,0.35);
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--ebano);
+      position: relative;
+      overflow: hidden;
+      padding: 80px 24px 88px;
+      text-align: center;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(212,0,0,0.14);
+      border: 1px solid rgba(212,0,0,0.38);
+      color: #f97070;
+      font-family: var(--display);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 6px 20px;
+      border-radius: 100px;
+      margin-bottom: 32px;
+    }
+
+    .hero h1 {
+      font-family: var(--display);
+      font-size: clamp(34px, 6vw, 62px);
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.12;
+      margin-bottom: 10px;
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      color: var(--tomato);
+    }
+
+    .hero-sub {
+      font-family: var(--display);
+      font-size: clamp(18px, 3vw, 28px);
+      font-weight: 300;
+      color: var(--lilac);
+      margin-bottom: 28px;
+    }
+
+    .hero-body {
+      font-size: 17px;
+      color: rgba(255,255,255,0.72);
+      line-height: 1.75;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .hero-body strong {
+      color: #fff;
+      font-weight: 600;
+    }
+
+    .hero-divider {
+      width: 56px;
+      height: 3px;
+      background: var(--tomato);
+      border-radius: 2px;
+      margin: 36px auto 0;
+    }
+
+    /* ── VOUCHERS ── */
+    .vouchers-section {
+      background: #fff;
+      padding: 72px 24px 80px;
+      text-align: center;
+    }
+
+    .section-label {
+      font-family: var(--display);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--tomato);
+      margin-bottom: 14px;
+    }
+
+    .vouchers-section h2 {
+      font-family: var(--display);
+      font-size: clamp(22px, 4vw, 38px);
+      font-weight: 700;
+      color: var(--ebano);
+      margin-bottom: 10px;
+    }
+
+    .vouchers-section .hint-top {
+      font-size: 15px;
+      color: #888;
+      margin-bottom: 52px;
+    }
+
+    .vouchers-grid {
+      display: flex;
+      gap: 24px;
+      justify-content: center;
+      flex-wrap: wrap;
+      max-width: 1020px;
+      margin: 0 auto 20px;
+    }
+
+    .voucher-card {
+      background: #fff;
+      border: 2px solid var(--grey-blue);
+      border-radius: 22px;
+      padding: 40px 28px 34px;
+      width: 290px;
+      cursor: pointer;
+      transition: all 0.28s cubic-bezier(0.34,1.56,0.64,1);
+      position: relative;
+      text-align: center;
+      user-select: none;
+    }
+
+    .voucher-card:hover {
+      border-color: var(--tomato);
+      transform: translateY(-7px);
+      box-shadow: 0 20px 56px rgba(212,0,0,0.11);
+    }
+
+    .voucher-card.selected {
+      border-color: var(--tomato);
+      background: linear-gradient(160deg,#fff 55%,#fff6f6 100%);
+      box-shadow: 0 14px 48px rgba(212,0,0,0.14);
+      transform: translateY(-5px);
+    }
+
+    .voucher-radio {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      border: 2px solid var(--grey-blue);
+      background: #fff;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .voucher-card.selected .voucher-radio {
+      background: var(--tomato);
+      border-color: var(--tomato);
+    }
+
+    .voucher-card.selected .voucher-radio::after {
+      content: '';
+      width: 9px;
+      height: 5px;
+      border-left: 2px solid #fff;
+      border-bottom: 2px solid #fff;
+      transform: rotate(-45deg) translateY(-1px);
+      display: block;
+    }
+
+    .voucher-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 18px;
+      background: var(--paper);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      transition: background 0.2s;
+    }
+
+    .voucher-card.selected .voucher-icon {
+      background: #ffeaea;
+    }
+
+    .voucher-icon svg {
+      width: 30px;
+      height: 30px;
+      stroke: var(--tomato);
+    }
+
+    .voucher-brand {
+      font-family: var(--display);
+      font-size: 19px;
+      font-weight: 700;
+      color: var(--ebano);
+      margin-bottom: 10px;
+    }
+
+    .voucher-desc {
+      font-size: 14px;
+      color: #777;
+      line-height: 1.65;
+      margin-bottom: 18px;
+    }
+
+    .voucher-tag {
+      display: inline-block;
+      padding: 5px 16px;
+      border-radius: 100px;
+      font-family: var(--display);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      background: var(--rose);
+      color: var(--tomato);
+    }
+
+    .selection-status {
+      font-size: 14px;
+      color: #aaa;
+      margin-top: 28px;
+      min-height: 20px;
+      transition: color 0.2s;
+    }
+
+    /* ── DATE / CONVITE ── */
+    .date-section {
+      background: var(--ebano);
+      padding: 80px 24px 88px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .date-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    .date-section .section-label {
+      color: var(--lilac);
+    }
+
+    .date-section h2 {
+      font-family: var(--display);
+      font-size: clamp(26px, 4.5vw, 44px);
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.18;
+      margin-bottom: 18px;
+    }
+
+    .date-section h2 em {
+      font-style: normal;
+      color: var(--tomato);
+    }
+
+    .date-section p {
+      font-size: 17px;
+      color: rgba(255,255,255,0.68);
+      line-height: 1.75;
+      max-width: 520px;
+      margin: 0 auto 44px;
+    }
+
+    .date-ctas {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      background: var(--tomato);
+      color: #fff;
+      font-family: var(--display);
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      padding: 17px 44px;
+      border-radius: 100px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.25s ease;
+      box-shadow: 0 8px 32px rgba(212,0,0,0.45);
+      width: 100%;
+      max-width: 420px;
+      text-align: center;
+    }
+
+    .btn-primary:hover {
+      background: #b80000;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(212,0,0,0.55);
+    }
+
+    .btn-secondary {
+      display: inline-block;
+      background: transparent;
+      color: rgba(255,255,255,0.75);
+      font-family: var(--display);
+      font-size: 15px;
+      font-weight: 600;
+      padding: 14px 44px;
+      border-radius: 100px;
+      border: 1.5px solid rgba(255,255,255,0.2);
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.25s ease;
+      width: 100%;
+      max-width: 420px;
+      text-align: center;
+    }
+
+    .btn-secondary:hover {
+      border-color: rgba(255,255,255,0.5);
+      color: #fff;
+      background: rgba(255,255,255,0.06);
+      transform: translateY(-2px);
+    }
+
+    .date-note {
+      margin-top: 28px;
+      font-size: 13px;
+      color: rgba(149,189,212,0.6);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--ebano);
+      border-top: 1px solid rgba(255,255,255,0.07);
+      padding: 28px 24px;
+      text-align: center;
+    }
+
+    .footer-logo {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 12px;
+    }
+
+    footer p {
+      font-size: 13px;
+      color: rgba(255,255,255,0.28);
+    }
+
+    footer a {
+      color: var(--lilac);
+      text-decoration: none;
+    }
+
+    footer a:hover { text-decoration: underline; }
+
+    /* ── MODAL ── */
+    .overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(19,19,29,0.8);
+      z-index: 999;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      backdrop-filter: blur(6px);
+    }
+
+    .overlay.active {
+      display: flex;
+      animation: fadeIn 0.2s ease;
+    }
+
+    .modal {
+      background: #fff;
+      border-radius: 24px;
+      padding: 52px 44px 44px;
+      max-width: 460px;
+      width: 100%;
+      text-align: center;
+      position: relative;
+      animation: slideUp 0.3s cubic-bezier(0.34,1.56,0.64,1);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 18px;
+      right: 22px;
+      background: none;
+      border: none;
+      font-size: 20px;
+      color: #bbb;
+      cursor: pointer;
+      line-height: 1;
+      padding: 4px;
+    }
+
+    .modal-close:hover { color: var(--ebano); }
+
+    .modal h3 {
+      font-family: var(--display);
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--ebano);
+      margin-bottom: 12px;
+    }
+
+    .modal p {
+      font-size: 15px;
+      color: #666;
+      line-height: 1.7;
+      margin-bottom: 28px;
+    }
+
+    .modal .btn-primary {
+      font-size: 15px;
+      padding: 15px 36px;
+    }
+
+    @keyframes fadeIn { from { opacity:0 } to { opacity:1 } }
+    @keyframes slideUp { from { opacity:0;transform:translateY(28px) } to { opacity:1;transform:translateY(0) } }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 700px) {
+      nav { padding: 14px 20px; }
+      .voucher-card { width: 100%; max-width: 340px; }
+      .btn-primary, .btn-secondary { max-width: 100%; }
+      .modal { padding: 40px 24px 36px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <svg style="display:block;height:34px;width:auto;" id="Camada_1" style="background-color:transparent" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 500 172.2">
+  
+  <defs>
+    <style>
+      .st0 {
+        fill: #d40000;
+      }
+    </style>
+  </defs>
+  <g>
+    <polygon class="st0" points="390.7 82.4 390.7 92.9 425.3 92.9 383.7 134.5 391 141.9 432.6 100.2 432.6 134.8 443.1 134.8 443.1 100.2 425.3 82.4 390.7 82.4"/>
+    <polygon class="st0" points="474.9 58 467.6 50.6 443.1 75 443.1 40.4 432.6 40.4 432.6 75 408.2 50.6 400.8 58 425.3 82.4 443.1 82.4 443.1 100.2 467.6 124.7 474.9 117.3 445.3 87.7 474.9 58"/>
+  </g>
+  <g fill="#FFFFFF">
+    <path d="M44.1,83.8c0-19.5,11.9-33.6,30.2-33.6s26.2,10.3,27.7,23.2h-10.4c-1.2-6.3-5.1-14.6-17.5-14.6s-19.7,12.1-19.7,24.9,5.4,25,19.7,25,16.9-8.3,17.5-16.2h10.4c-1.4,14.3-11.6,24.7-27.8,24.7s-30.1-14.1-30.1-33.5Z"/>
+    <path d="M173.3,109.3c-3.8,0-5.1-1.1-5.1-6v-26h10.8l-4.4-7.3h-6.4v-16h-8.9v16h-10.7l4.1,7.3h6.7v25.7c0,10.6,4.6,13.5,12.2,13.5s5.6,0,5.6,0v-7.3c0,0-2.3,0-3.8,0Z"/>
+    <path d="M355.7,109.3c-3.8,0-5.1-1.1-5.1-6v-26h10.8l-4.4-7.3h-6.4v-16h-8.9v16h-10.7l4.1,7.3h6.7v25.7c0,10.6,4.6,13.5,12.2,13.5s5.6,0,5.6,0v-7.3c0,0-2.3,0-3.8,0Z"/>
+    <path d="M182,104.2c0-10.3,7.8-13.4,19.2-15.5,7.2-1.4,11.6-2.3,11.6-6.8s-2-6.1-8.8-6.1-10.5,2.5-10.9,8.7h-9c.5-8.8,6.2-15.8,20.3-15.8s17.1,4,17.1,15.9v21.1c0,3.3.5,5.1,2.2,5.1s1.1,0,1.1,0v5.9c0,0-3.1,0-4.6,0-4.4,0-6.7-1.8-7.2-7h-.2c-3,4.8-8.2,7.8-15.7,7.8s-15.1-5.3-15.1-13.2ZM212.9,98.1v-6.6c-1.4,1.4-5.4,2.3-10.1,3.3-8.1,1.6-11.6,3.9-11.6,8.7s2.3,6.7,7.9,6.7c7.9,0,13.8-4.1,13.8-12.1Z"/>
+    <path d="M232.3,116.1V51.5h8.8v64.5h-8.8Z"/>
+    <path d="M251.3,131.8v-7.5c1.5.2,2.3.3,3.8.3,3.1,0,7.1-1.6,9.2-6.7s3.4-8.6,3.4-8.6h-5.8s-16-39.2-16-39.2h9.7l13.4,35.2h.2l12.6-35.2h9.3l-18.2,47.1c-4.4,11.4-8.8,15.1-16,15.1s-3.3,0-5.7-.4Z"/>
+    <path d="M292.3,100.7h8.9c.4,5.3,3.6,9.5,12.2,9.5s9.8-3.4,9.8-6.8c0-5.8-6.1-6.4-12.1-7.7-8-1.9-17.2-4.2-17.2-13.8s6.4-13.3,17.5-13.3,18.7,6.8,19.3,14.7h-8.9c-.6-3.5-2.5-7.6-10.2-7.6s-8.5,2.3-8.5,5.8,5.1,5.2,11.6,6.7c8.5,2,17.7,4.4,17.7,14.7s-6.9,14.3-19,14.3-20.9-7.2-21.2-16.6Z"/>
+  </g>
+  <path fill="#FFFFFF" d="M106.8,104c0-10.3,7.8-13.4,19.2-15.5,7.2-1.4,11.6-2.3,11.6-6.8s-2-6.1-8.8-6.1-10.5,2.5-10.9,8.7h-9c.5-8.8,6.2-15.8,20.3-15.8s17.1,4,17.1,15.9v21.1c0,3.3.5,5.1,2.2,5.1s1.1,0,1.1,0v5.9c0,0-3.1,0-4.6,0-4.4,0-6.7-1.8-7.2-7h-.2c-3,4.8-8.2,7.8-15.7,7.8s-15.1-5.3-15.1-13.2ZM137.7,97.9v-6.6c-1.4,1.4-5.4,2.3-10.1,3.3-8.1,1.6-11.6,3.9-11.6,8.7s2.3,6.7,7.9,6.7c7.9,0,13.8-4.1,13.8-12.1Z"/>
+</svg>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <svg style="display:block;opacity:0.07;position:absolute;width:340px;height:340px;top:-60px;right:-80px;pointer-events:none;" id="Camada_1" style="background-color:transparent" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 360 360">
+  
+  <defs>
+    <style>
+      .st0 {
+        fill: #d40000;
+      }
+    </style>
+  </defs>
+  <polygon class="st0" points="47.9 150.2 47.9 185.9 166.2 185.9 23.9 328.2 49.1 353.5 191.5 211.1 191.5 329.5 227.2 329.5 227.2 211.1 166.2 150.2 47.9 150.2"/>
+  <polygon class="st0" points="336.1 66.5 310.9 41.2 227.2 124.9 227.2 6.5 191.5 6.5 191.5 124.9 107.8 41.2 82.5 66.5 166.2 150.2 227.2 150.2 227.2 211.1 310.9 294.8 336.1 269.6 234.7 168.1 336.1 66.5"/>
+</svg>
+  <svg style="display:block;opacity:0.05;position:absolute;width:220px;height:220px;bottom:-40px;left:-50px;pointer-events:none;" id="Camada_1" style="background-color:transparent" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 360 360">
+  
+  <defs>
+    <style>
+      .st0 {
+        fill: #d40000;
+      }
+    </style>
+  </defs>
+  <polygon class="st0" points="47.9 150.2 47.9 185.9 166.2 185.9 23.9 328.2 49.1 353.5 191.5 211.1 191.5 329.5 227.2 329.5 227.2 211.1 166.2 150.2 47.9 150.2"/>
+  <polygon class="st0" points="336.1 66.5 310.9 41.2 227.2 124.9 227.2 6.5 191.5 6.5 191.5 124.9 107.8 41.2 82.5 66.5 166.2 150.2 227.2 150.2 227.2 211.1 310.9 294.8 336.1 269.6 234.7 168.1 336.1 66.5"/>
+</svg>
+
+  <div class="hero-badge">Dia dos Namorados</div>
+  <h1>Oi, <em>sumido.</em><br>Senti sua falta!</h1>
+  <p class="hero-sub">O Dia dos Namorados chegou.</p>
+  <p class="hero-body">
+    Seu status ainda e de <strong>status de relacionamento</strong>.<br>
+    Por aqui, seguimos torcendo para esse match<br>virar um case de sucesso!
+  </p>
+  <div class="hero-divider"></div>
+</section>
+
+<!-- VOUCHERS -->
+<section class="vouchers-section">
+  <p class="section-label">Seu presente</p>
+  <h2>Estamos te presenteando com um mimo</h2>
+  <p class="hint-top">Escolha o que mais combina com voce e aproveite essa data</p>
+
+  <p style="font-size:13px;color:var(--tomato);font-family:var(--display);font-weight:600;letter-spacing:0.04em;margin-bottom:40px;">
+    Escolha um dos presentes abaixo e clique em resgatar
+  </p>
+
+  <div class="vouchers-grid">
+
+    <div class="voucher-card" onclick="pick(this,'iFood')" role="button" aria-pressed="false">
+      <div class="voucher-radio"></div>
+      <div class="voucher-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 11l19-9-9 19-2-8-8-2z"/>
+        </svg>
+      </div>
+      <div class="voucher-brand">iFood</div>
+      <p class="voucher-desc">O jantar romantico e por nossa conta. Peca no conforto do lar ou reserve aquele restaurante especial.</p>
+      <span class="voucher-tag">Voucher Jantar</span>
+    </div>
+
+    <div class="voucher-card" onclick="pick(this,'Cinemark')" role="button" aria-pressed="false">
+      <div class="voucher-radio"></div>
+      <div class="voucher-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="7" width="20" height="15" rx="2" ry="2"/>
+          <polyline points="17 2 12 7 7 2"/>
+        </svg>
+      </div>
+      <div class="voucher-brand">Cinemark</div>
+      <p class="voucher-desc">Um par de ingressos para curtir a noite com quem voce ama. Pipoca e emocao garantidas.</p>
+      <span class="voucher-tag">2 Ingressos</span>
+    </div>
+
+    <div class="voucher-card" onclick="pick(this,'Dengo Chocolates')" role="button" aria-pressed="false">
+      <div class="voucher-radio"></div>
+      <div class="voucher-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+        </svg>
+      </div>
+      <div class="voucher-brand">Dengo Chocolates</div>
+      <p class="voucher-desc">100% cacau para adocar seu dia. Chocolate artesanal com origem e sabor em cada pedaco.</p>
+      <span class="voucher-tag">Caixa Especial</span>
+    </div>
+
+  </div>
+
+  <p class="selection-status" id="sel-status">Selecione um presente acima para continuar</p>
+</section>
+
+<!-- DATE / CONVITE -->
+<section class="date-section">
+  <svg style="display:block;opacity:0.06;position:absolute;width:260px;height:260px;bottom:-40px;right:-60px;pointer-events:none;" id="Camada_1" style="background-color:transparent" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 360 360">
+  
+  <defs>
+    <style>
+      .st0 {
+        fill: #d40000;
+      }
+    </style>
+  </defs>
+  <polygon class="st0" points="47.9 150.2 47.9 185.9 166.2 185.9 23.9 328.2 49.1 353.5 191.5 211.1 191.5 329.5 227.2 329.5 227.2 211.1 166.2 150.2 47.9 150.2"/>
+  <polygon class="st0" points="336.1 66.5 310.9 41.2 227.2 124.9 227.2 6.5 191.5 6.5 191.5 124.9 107.8 41.2 82.5 66.5 166.2 150.2 227.2 150.2 227.2 211.1 310.9 294.8 336.1 269.6 234.7 168.1 336.1 66.5"/>
+</svg>
+  <div class="date-inner">
+    <p class="section-label">Um convite especial</p>
+    <h2>E que tal<br>marcarmos um <em>date</em>?</h2>
+    <p>
+      A Catalyst gostaria de te convidar, neste mes de junho, para tomar um cafe da manha na Fabrica da Dengo Chocolates. Vamos?
+    </p>
+
+    <div class="date-ctas">
+      <button class="btn-primary" onclick="openModal('full')">
+        Marcar cafe da manha e resgatar meu mimo
+      </button>
+      <button class="btn-secondary" onclick="openModal('mimo')">
+        Quero apenas resgatar meu mimo
+      </button>
+    </div>
+
+    <p class="date-note">Nenhum compromisso. So uma boa conversa e muito chocolate.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">
+    <svg style="display:block;height:28px;width:auto;" id="Camada_1" style="background-color:transparent" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 500 172.2">
+  
+  <defs>
+    <style>
+      .st0 {
+        fill: #d40000;
+      }
+    </style>
+  </defs>
+  <g>
+    <polygon class="st0" points="390.7 82.4 390.7 92.9 425.3 92.9 383.7 134.5 391 141.9 432.6 100.2 432.6 134.8 443.1 134.8 443.1 100.2 425.3 82.4 390.7 82.4"/>
+    <polygon class="st0" points="474.9 58 467.6 50.6 443.1 75 443.1 40.4 432.6 40.4 432.6 75 408.2 50.6 400.8 58 425.3 82.4 443.1 82.4 443.1 100.2 467.6 124.7 474.9 117.3 445.3 87.7 474.9 58"/>
+  </g>
+  <g fill="#FFFFFF">
+    <path d="M44.1,83.8c0-19.5,11.9-33.6,30.2-33.6s26.2,10.3,27.7,23.2h-10.4c-1.2-6.3-5.1-14.6-17.5-14.6s-19.7,12.1-19.7,24.9,5.4,25,19.7,25,16.9-8.3,17.5-16.2h10.4c-1.4,14.3-11.6,24.7-27.8,24.7s-30.1-14.1-30.1-33.5Z"/>
+    <path d="M173.3,109.3c-3.8,0-5.1-1.1-5.1-6v-26h10.8l-4.4-7.3h-6.4v-16h-8.9v16h-10.7l4.1,7.3h6.7v25.7c0,10.6,4.6,13.5,12.2,13.5s5.6,0,5.6,0v-7.3c0,0-2.3,0-3.8,0Z"/>
+    <path d="M355.7,109.3c-3.8,0-5.1-1.1-5.1-6v-26h10.8l-4.4-7.3h-6.4v-16h-8.9v16h-10.7l4.1,7.3h6.7v25.7c0,10.6,4.6,13.5,12.2,13.5s5.6,0,5.6,0v-7.3c0,0-2.3,0-3.8,0Z"/>
+    <path d="M182,104.2c0-10.3,7.8-13.4,19.2-15.5,7.2-1.4,11.6-2.3,11.6-6.8s-2-6.1-8.8-6.1-10.5,2.5-10.9,8.7h-9c.5-8.8,6.2-15.8,20.3-15.8s17.1,4,17.1,15.9v21.1c0,3.3.5,5.1,2.2,5.1s1.1,0,1.1,0v5.9c0,0-3.1,0-4.6,0-4.4,0-6.7-1.8-7.2-7h-.2c-3,4.8-8.2,7.8-15.7,7.8s-15.1-5.3-15.1-13.2ZM212.9,98.1v-6.6c-1.4,1.4-5.4,2.3-10.1,3.3-8.1,1.6-11.6,3.9-11.6,8.7s2.3,6.7,7.9,6.7c7.9,0,13.8-4.1,13.8-12.1Z"/>
+    <path d="M232.3,116.1V51.5h8.8v64.5h-8.8Z"/>
+    <path d="M251.3,131.8v-7.5c1.5.2,2.3.3,3.8.3,3.1,0,7.1-1.6,9.2-6.7s3.4-8.6,3.4-8.6h-5.8s-16-39.2-16-39.2h9.7l13.4,35.2h.2l12.6-35.2h9.3l-18.2,47.1c-4.4,11.4-8.8,15.1-16,15.1s-3.3,0-5.7-.4Z"/>
+    <path d="M292.3,100.7h8.9c.4,5.3,3.6,9.5,12.2,9.5s9.8-3.4,9.8-6.8c0-5.8-6.1-6.4-12.1-7.7-8-1.9-17.2-4.2-17.2-13.8s6.4-13.3,17.5-13.3,18.7,6.8,19.3,14.7h-8.9c-.6-3.5-2.5-7.6-10.2-7.6s-8.5,2.3-8.5,5.8,5.1,5.2,11.6,6.7c8.5,2,17.7,4.4,17.7,14.7s-6.9,14.3-19,14.3-20.9-7.2-21.2-16.6Z"/>
+  </g>
+  <path fill="#FFFFFF" d="M106.8,104c0-10.3,7.8-13.4,19.2-15.5,7.2-1.4,11.6-2.3,11.6-6.8s-2-6.1-8.8-6.1-10.5,2.5-10.9,8.7h-9c.5-8.8,6.2-15.8,20.3-15.8s17.1,4,17.1,15.9v21.1c0,3.3.5,5.1,2.2,5.1s1.1,0,1.1,0v5.9c0,0-3.1,0-4.6,0-4.4,0-6.7-1.8-7.2-7h-.2c-3,4.8-8.2,7.8-15.7,7.8s-15.1-5.3-15.1-13.2ZM137.7,97.9v-6.6c-1.4,1.4-5.4,2.3-10.1,3.3-8.1,1.6-11.6,3.9-11.6,8.7s2.3,6.7,7.9,6.7c7.9,0,13.8-4.1,13.8-12.1Z"/>
+</svg>
+  </div>
+  <p>© 2025 Catalyst. Com carinho para voce.<br>
+  <a href="mailto:contato@catalystmobile.com.br">contato@catalystmobile.com.br</a></p>
+</footer>
+
+<!-- MODAL -->
+<div class="overlay" id="modal" onclick="closeOnBg(event)">
+  <div class="modal" role="dialog" aria-modal="true">
+    <button class="modal-close" onclick="closeModal()" aria-label="Fechar">&#x2715;</button>
+    <h3 id="m-title">Que otima escolha!</h3>
+    <p id="m-body">Em breve um especialista da Catalyst vai entrar em contato para combinar todos os detalhes. A gente promete que dessa vez a conversa nao esfria!</p>
+    <a href="mailto:contato@catalystmobile.com.br?subject=Quero%20resgatar%20meu%20mimo%20%E2%80%94%20Dia%20dos%20Namorados" class="btn-primary">
+      Entrar em contato
+    </a>
+  </div>
+</div>
+
+<script>
+  let chosen = null;
+
+  function pick(card, name) {
+    document.querySelectorAll('.voucher-card').forEach(c => {
+      c.classList.remove('selected');
+      c.setAttribute('aria-pressed','false');
+    });
+    card.classList.add('selected');
+    card.setAttribute('aria-pressed','true');
+    chosen = name;
+    const s = document.getElementById('sel-status');
+    s.textContent = chosen + ' selecionado — role para baixo e escolha sua opcao';
+    s.style.color = '#22a35a';
+  }
+
+  function openModal(type) {
+    if (!chosen) {
+      const s = document.getElementById('sel-status');
+      s.textContent = 'Escolha um presente antes de continuar!';
+      s.style.color = '#D40000';
+      document.querySelector('.vouchers-section').scrollIntoView({behavior:'smooth'});
+      return;
+    }
+    const t = document.getElementById('m-title');
+    const b = document.getElementById('m-body');
+    if (type === 'full') {
+      t.textContent = 'Combinado!';
+      b.textContent = 'Otimo! Vamos marcar seu cafe da manha na Fabrica da Dengo e garantir o seu ' + chosen + '. Nossa equipe vai entrar em contato para alinhar data e horario.';
+    } else {
+      t.textContent = chosen + ' chegando!';
+      b.textContent = 'Perfeito! Em breve um especialista da Catalyst vai entrar em contato para combinar todos os detalhes do seu resgate de ' + chosen + '.';
+    }
+    document.getElementById('modal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    document.getElementById('modal').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  function closeOnBg(e) {
+    if (e.target === document.getElementById('modal')) closeModal();
+  }
+
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+</script>
+
+</body>
+</html>
