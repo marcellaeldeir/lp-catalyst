@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Oi, sumido — Feliz Dia dos Namorados da Catalyst</title>
+  <title>Dia dos Namorados da Catalyst</title>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -461,6 +461,19 @@
     @keyframes fadeIn { from { opacity:0 } to { opacity:1 } }
     @keyframes slideUp { from { opacity:0;transform:translateY(28px) } to { opacity:1;transform:translateY(0) } }
 
+
+    /* ─── HEART DIVIDER ─── */
+    .heart-divider {
+      background: #fff;
+      padding: 0;
+      line-height: 0;
+    }
+    .heart-divider svg {
+      display: block;
+      width: 100%;
+      max-width: 900px;
+      margin: 0 auto;
+    }
     /* ── RESPONSIVE ── */
     @media (max-width: 700px) {
       nav { padding: 14px 20px; }
@@ -473,7 +486,7 @@
 <body>
 
 <!-- NAV -->
-<nav><center>
+<nav>
   <svg style="display:block;height:34px;width:auto;" id="Camada_1" style="background-color:transparent" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 500 172.2">
   
   <defs>
@@ -497,7 +510,7 @@
     <path d="M292.3,100.7h8.9c.4,5.3,3.6,9.5,12.2,9.5s9.8-3.4,9.8-6.8c0-5.8-6.1-6.4-12.1-7.7-8-1.9-17.2-4.2-17.2-13.8s6.4-13.3,17.5-13.3,18.7,6.8,19.3,14.7h-8.9c-.6-3.5-2.5-7.6-10.2-7.6s-8.5,2.3-8.5,5.8,5.1,5.2,11.6,6.7c8.5,2,17.7,4.4,17.7,14.7s-6.9,14.3-19,14.3-20.9-7.2-21.2-16.6Z"/>
   </g>
   <path fill="#FFFFFF" d="M106.8,104c0-10.3,7.8-13.4,19.2-15.5,7.2-1.4,11.6-2.3,11.6-6.8s-2-6.1-8.8-6.1-10.5,2.5-10.9,8.7h-9c.5-8.8,6.2-15.8,20.3-15.8s17.1,4,17.1,15.9v21.1c0,3.3.5,5.1,2.2,5.1s1.1,0,1.1,0v5.9c0,0-3.1,0-4.6,0-4.4,0-6.7-1.8-7.2-7h-.2c-3,4.8-8.2,7.8-15.7,7.8s-15.1-5.3-15.1-13.2ZM137.7,97.9v-6.6c-1.4,1.4-5.4,2.3-10.1,3.3-8.1,1.6-11.6,3.9-11.6,8.7s2.3,6.7,7.9,6.7c7.9,0,13.8-4.1,13.8-12.1Z"/>
-</svg></center>
+</svg>
 </nav>
 
 <!-- HERO -->
@@ -529,15 +542,16 @@
 
   <div class="hero-badge">Dia dos Namorados</div>
   <h1>Oi, <em>sumido(a).</em><br>Sentimos sua falta!</h1>
+  <p class="hero-sub"></p>
   <p class="hero-body">
-    Seu status ainda é de <strong>SABOOOR</strong> relacionamento.<br>
+    O Dia dos Namorados chegou e seu status ainda é de <strong>SABOOOOOR</strong> relacionamento.<br>
     Por aqui, seguimos torcendo para esse match<br>virar um case de sucesso!
   </p>
   <div class="hero-divider"></div>
 </section>
 
 <div class="heart-divider">
-  <svg viewBox="0 0 900 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" style="display:block;width:100%;max-width:900px;">
+  <svg viewBox="0 0 900 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" style="display:block;">
   <line x1="0" y1="30" x2="900" y2="30" stroke="#f0d0d0" stroke-width="1"/>
 <path d="M 298.5,35.2 C 295.2,32.0 289.5,29.6 289.5,25.5 C 289.5,20.5 294.7,17.8 298.5,22.1 C 302.3,17.8 307.5,20.5 307.5,25.5 C 307.5,29.6 301.8,32.0 298.5,35.2 Z" fill="none" stroke="#D40000" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
   <path d="M 376.5,37.5 C 371.7,32.9 363.5,29.5 363.5,23.5 C 363.5,16.2 371.0,12.3 376.5,18.6 C 382.0,12.3 389.5,16.2 389.5,23.5 C 389.5,29.5 381.3,32.9 376.5,37.5 Z" fill="none" stroke="#D40000" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
@@ -546,8 +560,7 @@
   <path d="M 610.5,35.2 C 607.2,32.0 601.5,29.6 601.5,25.5 C 601.5,20.5 606.7,17.8 610.5,22.1 C 614.3,17.8 619.5,20.5 619.5,25.5 C 619.5,29.6 613.8,32.0 610.5,35.2 Z" fill="none" stroke="#D40000" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
 </svg>
 </div>
- 
- 
+
 <!-- VOUCHERS -->
 <section class="vouchers-section">
   <p class="section-label"></p>
@@ -568,7 +581,7 @@
         </svg>
       </div>
       <div class="voucher-brand">iFood</div>
-      <p class="voucher-desc">O jantar romântico é por nossa conta. Peça no conforto do lar aquele restaurante especial.</p>
+      <p class="voucher-desc">O jantar romântico e por nossa conta. Peça no conforto do lar aquele restaurante especial.</p>
       <span class="voucher-tag">Voucher Jantar</span>
     </div>
 
@@ -599,11 +612,11 @@
 
   </div>
 
- <p class="selection-status" id="sel-status">Selecione um presente acima para continuar</p>
+  <p class="selection-status" id="sel-status">Selecione um presente acima para continuar</p>
 </section>
- 
+
 <div class="heart-divider">
-  <svg viewBox="0 0 900 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" style="display:block;width:100%;max-width:900px;">
+  <svg viewBox="0 0 900 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" style="display:block;">
   <line x1="0" y1="30" x2="900" y2="30" stroke="#f0d0d0" stroke-width="1"/>
 <path d="M 298.5,35.2 C 295.2,32.0 289.5,29.6 289.5,25.5 C 289.5,20.5 294.7,17.8 298.5,22.1 C 302.3,17.8 307.5,20.5 307.5,25.5 C 307.5,29.6 301.8,32.0 298.5,35.2 Z" fill="none" stroke="#D40000" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
   <path d="M 376.5,37.5 C 371.7,32.9 363.5,29.5 363.5,23.5 C 363.5,16.2 371.0,12.3 376.5,18.6 C 382.0,12.3 389.5,16.2 389.5,23.5 C 389.5,29.5 381.3,32.9 376.5,37.5 Z" fill="none" stroke="#D40000" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
@@ -612,8 +625,7 @@
   <path d="M 610.5,35.2 C 607.2,32.0 601.5,29.6 601.5,25.5 C 601.5,20.5 606.7,17.8 610.5,22.1 C 614.3,17.8 619.5,20.5 619.5,25.5 C 619.5,29.6 613.8,32.0 610.5,35.2 Z" fill="none" stroke="#D40000" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
 </svg>
 </div>
- 
-  
+
 <!-- DATE / CONVITE -->
 <section class="date-section">
   <svg style="display:block;opacity:0.06;position:absolute;width:260px;height:260px;bottom:-40px;right:-60px;pointer-events:none;" id="Camada_1" style="background-color:transparent" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 360 360">
@@ -644,8 +656,6 @@
       </button>
     </div>
 
-    
-    <p class="date-note">Nenhum compromisso. Só uma boa conversa, cafézinho e muito chocolate.</p>
   </div>
 </section>
 
@@ -743,4 +753,3 @@
 </script>
 
 </body>
-</html>
