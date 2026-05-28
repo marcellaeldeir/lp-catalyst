@@ -581,8 +581,8 @@
         </svg>
       </div>
       <div class="voucher-brand">iFood</div>
-      <p class="voucher-desc">O jantar romântico e por nossa conta. Peça no conforto do lar aquele restaurante especial.</p>
-      <span class="voucher-tag">Voucher Jantar</span>
+      <p class="voucher-desc">O jantar romântico é por nossa conta. Peça no conforto do lar aquele restaurante especial.</p>
+      <span class="voucher-tag">Voucher iFood</span>
     </div>
 
     <div class="voucher-card" onclick="pick(this,'Cinemark')" role="button" aria-pressed="false">
@@ -595,7 +595,7 @@
       </div>
       <div class="voucher-brand">Cinemark</div>
       <p class="voucher-desc">Um par de ingressos para curtir a noite com quem você ama.</p>
-      <span class="voucher-tag">2 Ingressos</span>
+      <span class="voucher-tag">Voucher Cinemark</span>
     </div>
 
     <div class="voucher-card" onclick="pick(this,'Dengo Chocolates')" role="button" aria-pressed="false">
@@ -695,9 +695,9 @@
 <div class="overlay" id="modal" onclick="closeOnBg(event)">
   <div class="modal" role="dialog" aria-modal="true">
     <button class="modal-close" onclick="closeModal()" aria-label="Fechar">&#x2715;</button>
-    <h3 id="m-title">Que otima escolha!</h3>
-    <p id="m-body">Em breve um especialista da Catalyst vai entrar em contato para combinar todos os detalhes. A gente promete que dessa vez a conversa nao esfria!</p>
-    <a href="mailto:contato@catalystmobile.com.br?subject=Quero%20resgatar%20meu%20mimo%20%E2%80%94%20Dia%20dos%20Namorados" class="btn-primary">
+    <h3 id="m-title">Que ótima escolha!</h3>
+    <p id="m-body">Em breve um especialista da Catalyst vai entrar em contato para combinar todos os detalhes. A gente promete que dessa vez a conversa não esfria!</p>
+    <a href="mailto:contato@catalystgrowth.app?subject=Quero%20resgatar%20meu%20mimo%20%E2%80%94%20Dia%20dos%20Namorados" class="btn-primary">
       Entrar em contato
     </a>
   </div>
@@ -715,7 +715,7 @@
     card.setAttribute('aria-pressed','true');
     chosen = name;
     const s = document.getElementById('sel-status');
-    s.textContent = chosen + ' selecionado — role para baixo e escolha sua opcao';
+    s.textContent = chosen + ' selecionado — role para baixo para resgatar seu mimo';
     s.style.color = '#22a35a';
   }
 
@@ -731,7 +731,7 @@
     const b = document.getElementById('m-body');
     if (type === 'full') {
       t.textContent = 'Combinado!';
-      b.textContent = 'Otimo! Vamos marcar seu cafe da manha na Fabrica da Dengo e garantir o seu ' + chosen + '. Nossa equipe vai entrar em contato para alinhar data e horario.';
+      b.textContent = 'Ótimo! Vamos marcar seu café da manhã na Fábrica da Dengo e garantir o seu ' + chosen + '. Nossa equipe vai entrar em contato para alinhar data e horário.';
     } else {
       t.textContent = chosen + ' chegando!';
       b.textContent = 'Perfeito! Em breve um especialista da Catalyst vai entrar em contato para combinar todos os detalhes do seu resgate de ' + chosen + '.';
